@@ -1,0 +1,458 @@
+{
+  "info": {
+    "name": "Research Opportunity Portal API",
+    "description": "CN Assignment #01 - run the requests in order (Test 1 to Test 10) with the Collection Runner. Backend must be running on http://localhost:5000.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Test 1 - Create Opportunity 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "description": "Expected: 201 Created",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Congestion Control in 5G Networks\",\n  \"research_description\": \"Compare TCP congestion control algorithms (Cubic, BBR) over simulated 5G links using ns-3.\",\n  \"research_area\": \"Computer Networks\",\n  \"faculty_name\": \"Dr. Sana Ahmed\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"C++, ns-3, TCP/IP\",\n  \"available_positions\": 2,\n  \"application_deadline\": \"2026-12-01\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Saved new ID as opportunityId1\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.data.id).to.be.a(\"number\");",
+              "    pm.collectionVariables.set(\"opportunityId1\", json.data.id);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 2 - Create Opportunity 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "description": "Expected: 201 Created",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"IoT-Based Smart Irrigation\",\n  \"research_description\": \"Design a low-cost soil moisture sensor network that automates irrigation for small farms.\",\n  \"research_area\": \"Internet of Things\",\n  \"faculty_name\": \"Dr. Bilal Hussain\",\n  \"department\": \"Electrical Engineering\",\n  \"required_skills\": \"Arduino, Embedded C, MQTT\",\n  \"available_positions\": 3,\n  \"application_deadline\": \"2026-11-20\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Saved new ID as opportunityId2\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.data.id).to.be.a(\"number\");",
+              "    pm.collectionVariables.set(\"opportunityId2\", json.data.id);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 3 - Create Opportunity 3",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "description": "Expected: 201 Created",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Phishing Website Detection\",\n  \"research_description\": \"Train a classifier that detects phishing URLs using lexical and host-based features.\",\n  \"research_area\": \"Cyber Security\",\n  \"faculty_name\": \"Dr. Nadia Rehman\",\n  \"department\": \"Cyber Security\",\n  \"required_skills\": \"Python, scikit-learn, Networking basics\",\n  \"available_positions\": 1,\n  \"application_deadline\": \"2026-12-10\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Saved new ID as opportunityId3\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.data.id).to.be.a(\"number\");",
+              "    pm.collectionVariables.set(\"opportunityId3\", json.data.id);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 4 - Get All Opportunities",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "description": "Expected: 200 OK"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Returns at least 3 opportunities\", function () {",
+              "    pm.expect(pm.response.json().data.length).to.be.at.least(3);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 5 - Get One Opportunity by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{opportunityId1}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{opportunityId1}}"
+          ]
+        },
+        "description": "Expected: 200 OK"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Correct opportunity returned\", function () {",
+              "    pm.expect(pm.response.json().data.id).to.eql(Number(pm.collectionVariables.get(\"opportunityId1\")));",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 6 - Update Opportunity",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{opportunityId1}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{opportunityId1}}"
+          ]
+        },
+        "description": "Expected: 200 OK",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"Congestion Control in 5G and Wi-Fi 7 Networks\",\n  \"research_description\": \"Compare TCP congestion control algorithms (Cubic, BBR) over simulated 5G links using ns-3.\",\n  \"research_area\": \"Computer Networks\",\n  \"faculty_name\": \"Dr. Sana Ahmed\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"C++, ns-3, TCP/IP, Python\",\n  \"available_positions\": 4,\n  \"application_deadline\": \"2026-12-20\",\n  \"status\": \"Open\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Fields were updated\", function () {",
+              "    var d = pm.response.json().data;",
+              "    pm.expect(d.available_positions).to.eql(4);",
+              "    pm.expect(d.application_deadline).to.eql(\"2026-12-20\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 7 - Close Opportunity (Open to Closed)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{opportunityId2}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{opportunityId2}}"
+          ]
+        },
+        "description": "Expected: 200 OK, status = Closed",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Closed\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Status is now Closed\", function () {",
+              "    pm.expect(pm.response.json().data.status).to.eql(\"Closed\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 8 - Delete Opportunity",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{opportunityId3}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{opportunityId3}}"
+          ]
+        },
+        "description": "Expected: 200 OK"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 9 - Get Deleted Opportunity (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/{{opportunityId3}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities",
+            "{{opportunityId3}}"
+          ]
+        },
+        "description": "Expected: 404 Not Found"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 10 - Create with Invalid Data (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "opportunities"
+          ]
+        },
+        "description": "Expected: 400 Bad Request",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"research_title\": \"\",\n  \"research_description\": \"Missing several required fields\",\n  \"available_positions\": -2,\n  \"application_deadline\": \"not-a-date\",\n  \"status\": \"Pending\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "pm.test(\"Validation details are returned\", function () {",
+              "    pm.expect(pm.response.json().details).to.be.an(\"array\").that.is.not.empty;",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "opportunityId1",
+      "value": "1"
+    },
+    {
+      "key": "opportunityId2",
+      "value": "2"
+    },
+    {
+      "key": "opportunityId3",
+      "value": "3"
+    }
+  ]
+}
