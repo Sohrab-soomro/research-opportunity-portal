@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Opportunity Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div>
+                <h1>University Research Opportunity Portal</h1>
+                <p class="subtitle">Post, view, update and manage research opportunities in one place</p>
+            </div>
+            <nav>
+                <button class="nav-btn active" id="navList">All Opportunities</button>
+                <button class="nav-btn" id="navCreate">+ New Opportunity</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Success / error messages appear here -->
+        <div id="message" class="message hidden" role="status"></div>
+
+        <!-- ============ LIST VIEW ============ -->
+        <section id="listView" class="card">
+            <div class="card-head">
+                <h2>Research Opportunities</h2>
+                <button class="btn btn-light" id="refreshBtn">Refresh</button>
+            </div>
+            <p id="listInfo" class="muted">Loading opportunities...</p>
+            <div class="table-wrap">
+                <table id="opportunityTable" class="hidden">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Research Area</th>
+                            <th>Faculty</th>
+                            <th>Department</th>
+                            <th>Positions</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="opportunityBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ============ DETAILS VIEW ============ -->
+        <section id="detailsView" class="card hidden">
+            <div class="card-head">
+                <h2>Opportunity Details</h2>
+                <button class="btn btn-light" data-back>&larr; Back to list</button>
+            </div>
+            <dl id="detailsList" class="details"></dl>
+            <div class="actions" id="detailsActions"></div>
+        </section>
+
+        <!-- ============ CREATE / EDIT FORM ============ -->
+        <section id="formView" class="card hidden">
+            <div class="card-head">
+                <h2 id="formTitle">New Research Opportunity</h2>
+                <button class="btn btn-light" data-back>&larr; Back to list</button>
+            </div>
+
+            <form id="opportunityForm" novalidate>
+                <input type="hidden" id="opportunityId">
+
+                <div class="field full">
+                    <label for="research_title">Research Title *</label>
+                    <input type="text" id="research_title" maxlength="200">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field full">
+                    <label for="research_description">Research Description *</label>
+                    <textarea id="research_description" rows="4"></textarea>
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="research_area">Research Area *</label>
+                    <input type="text" id="research_area" maxlength="100">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="faculty_name">Faculty Member's Name *</label>
+                    <input type="text" id="faculty_name" maxlength="100">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="department">Department *</label>
+                    <input type="text" id="department" maxlength="100">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="required_skills">Required Skills *</label>
+                    <input type="text" id="required_skills" maxlength="255" placeholder="e.g. Python, Networking">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="available_positions">Available Positions *</label>
+                    <input type="number" id="available_positions" min="1" step="1">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="application_deadline">Application Deadline *</label>
+                    <input type="date" id="application_deadline">
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="status">Status *</label>
+                    <select id="status">
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                    <small class="field-error"></small>
+                </div>
+
+                <div class="form-buttons full">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Create Opportunity</button>
+                    <button type="button" class="btn btn-light" data-back>Cancel</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
