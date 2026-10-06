@@ -10,7 +10,7 @@
 - **Assignment:** Assignment #01
 - **Date:** 07/10/2026
 - **GitHub Repository:** https://github.com/Sohrab-soomro/research-opportunity-portal
-- **Demonstration Video:** `demonstration_video.mp4` (or see submission link)
+- **Submission Type:** Complete Project (Backend, Frontend, Database, Postman, Tests)
 
 ---
 
