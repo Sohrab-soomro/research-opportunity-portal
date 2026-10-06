@@ -9,9 +9,8 @@
 - **Course:** Computer Networks (CN)
 - **Assignment:** Assignment #01
 - **Date:** 07/10/2026
-- **GitHub Repository:** YOUR_GITHUB_REPOSITORY_URL
-
-> **Note:** Keep `YOUR_GITHUB_REPOSITORY_URL` as a placeholder until the repository is created on GitHub. Replace it with your actual repository URL before final submission.
+- **GitHub Repository:** https://github.com/Sohrab-soomro/research-opportunity-portal
+- **Demonstration Video:** `demonstration_video.mp4` (or see submission link)
 
 ---
 
