@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-10",
+  "timezone": "Asia/Karachi",
+  "database": "MySQL Community 8.4.9",
+  "api_mysql_scenarios": {
+    "passed": 10,
+    "failed": 0
+  },
+  "regression_methods": {
+    "passed": 9,
+    "failed": 0
+  },
+  "newman": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 10,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 10,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 10,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 10,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 10,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 18,
+      "pending": 0,
+      "failed": 0
+    },
+    "testScripts": {
+      "total": 10,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 0,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "browser_crud": "passed against MySQL",
+  "restart_persistence": "passed; direct SQL and API readback",
+  "video": "missing"
+}

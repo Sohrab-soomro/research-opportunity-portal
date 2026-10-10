@@ -17,3 +17,5 @@
 | Recording | docs/DEMO_VIDEO_SCRIPT.md | Prepared tabs and timed narration |
 
 Suggested editor tab order: app.py → frontend/script.js → routes/opportunities.py → schema.sql → collection → README. Keep database passwords, Git credentials and private windows out of the recording.
+
+Local setup: `scripts/local_mysql.py`; full launcher: `START_PORTAL.cmd` / `scripts/start_portal.py`. VS Code tasks include Start portal and Start/Stop/Status local MySQL.

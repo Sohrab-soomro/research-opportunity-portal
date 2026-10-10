@@ -8,13 +8,33 @@ Faculty can create, retrieve, edit, close and delete research opportunities in o
 
 ## Verification and submission status
 
-Read [the actual test report](docs/TEST_REPORT.md) and [requirement audit](docs/ASSIGNMENT_AUDIT.md). Mock tests verify API logic, not MySQL persistence. Real MySQL integration remains UNVERIFIED on the audit machine. A real video is still required; a script does not satisfy this requirement.
+Read [the actual test report](docs/TEST_REPORT.md) and [requirement audit](docs/ASSIGNMENT_AUDIT.md). Real MySQL 8.4.9 integration, browser CRUD, restart persistence and the Postman collection have now been verified. Mock tests remain available for isolated logic checks. A real video is still required; a script does not satisfy this requirement.
 
 ## Requirements
 
 Python 3.10+, MySQL Server 8+, VS Code (recommended), Git and Postman. MySQL must be running and the configured account must have access to the database. Optional Newman execution needs Node.js/npm. The stack uses Flask, Flask-CORS, mysql-connector-python and python-dotenv.
 
-## Windows PowerShell setup
+## Ready on this computer
+
+MySQL 8.4.9 and the project `.venv` are installed. The app uses MySQL on **127.0.0.1:3307** and Flask on **http://localhost:5000**. Double-click `START_PORTAL.cmd`, or run the VS Code task **Start portal (MySQL + Flask + browser)**. This starts the project database if necessary, starts Flask, and opens the browser. If Flask is already running, it opens the existing app.
+
+Database files and admin configuration are in ignored `.local/`; the generated app password is in ignored `backend/.env`. Neither is shipped or pushed. The database uses a restricted app account; integration privileges apply only to uniquely named test databases. No system MySQL service or firewall rule was created. Keep `.local/` to retain your local data. `Stop local MySQL` shuts it down safely; it does not delete data.
+
+## Reproduce this isolated Windows setup on another computer
+
+Install MySQL 8.4 from Oracle (or `winget install --id Oracle.MySQL --exact --source winget`), create `.venv`, and install backend requirements as below. Before creating a `.env` file, run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/local_mysql.py setup
+.\.venv\Scripts\python.exe backend/test_api.py --mode mysql
+.\.venv\Scripts\python.exe scripts/start_portal.py
+```
+
+Setup generates private random credentials, creates only a new project data directory/database, and loads two demo rows. It refuses to overwrite an existing `.local/` or `.env`. It expects `C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqld.exe`; for another installation set the `MYSQLD_PATH` environment variable first. Port 3307 must be free. These setup/start/stop/status operations were executed successfully during this audit.
+
+For an existing separately managed MySQL server, use the manual steps below instead. Those steps default to port 3306; keep DB_PORT consistent with your server.
+
+## Windows PowerShell setup (existing MySQL server)
 
 Open this repository folder in VS Code, then run from its root:
 
@@ -66,6 +86,8 @@ backend/requirements.txt Python dependencies
 frontend/                 index.html, style.css, script.js
 database/schema.sql       Non-destructive schema setup
 database/seed.sql         Optional demo rows
+scripts/                  Local MySQL setup/start/stop and full app launcher
+START_PORTAL.cmd          Double-click launcher for this Windows setup
 postman/                  Exported executable collection
 docs/                     Audit, report, quick start, map, demo and submission guide
 DEMO_AND_VIDEO_SCRIPT.docx Preserved original demo reference
