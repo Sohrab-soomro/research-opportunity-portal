@@ -18,3 +18,4 @@ PUSH_TO_GITHUB.bat
 *.log
 *.zip
 *.mp4
+.local/

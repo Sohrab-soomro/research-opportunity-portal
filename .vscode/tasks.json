@@ -2,6 +2,18 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Start portal (MySQL + Flask + browser)",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "scripts/start_portal.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Start Flask",
       "type": "process",
       "command": "${workspaceFolder}/.venv/Scripts/python.exe",
@@ -80,6 +92,45 @@
         "-Command",
         "Start-Process 'http://localhost:5000'"
       ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Start local MySQL",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "scripts/local_mysql.py",
+        "start"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop local MySQL",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "scripts/local_mysql.py",
+        "stop"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Status local MySQL",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "scripts/local_mysql.py",
+        "status"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
     }
   ]
