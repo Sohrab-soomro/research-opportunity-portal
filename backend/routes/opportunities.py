@@ -8,6 +8,7 @@ PUT    /api/opportunities/<id>   -> update (also used to close: status = "Closed
 DELETE /api/opportunities/<id>   -> delete
 """
 from datetime import datetime, date
+import re
 
 import mysql.connector
 from flask import Blueprint, jsonify, request
@@ -25,6 +26,8 @@ TEXT_FIELDS = [
     "required_skills",
 ]
 ALL_FIELDS = TEXT_FIELDS + ["available_positions", "application_deadline", "status"]
+TEXT_LIMITS = {"research_title": 200, "research_area": 100, "faculty_name": 100,
+               "department": 100, "required_skills": 255}
 VALID_STATUSES = ["Open", "Closed"]
 
 
@@ -52,6 +55,8 @@ def validate(data):
             errors.append(f"{field} is required")
         else:
             clean[field] = value.strip()
+            if len(clean[field]) > TEXT_LIMITS.get(field, 65535) or (field == "research_description" and len(clean[field].encode("utf-8")) > 65535):
+                errors.append(f"{field} exceeds its database length limit")
 
     # Available positions must be a positive whole number
     positions = data.get("available_positions")
@@ -59,7 +64,7 @@ def validate(data):
         if isinstance(positions, bool):
             raise ValueError
         positions = int(str(positions))
-        if positions <= 0:
+        if positions <= 0 or positions > 2147483647:
             raise ValueError
         clean["available_positions"] = positions
     except (ValueError, TypeError):
@@ -68,7 +73,11 @@ def validate(data):
     # Deadline must be a real date in YYYY-MM-DD format
     deadline = data.get("application_deadline")
     try:
+        if not isinstance(deadline, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", deadline):
+            raise ValueError
         clean["application_deadline"] = datetime.strptime(str(deadline), "%Y-%m-%d").date()
+        if clean["application_deadline"].year < 1000:
+            raise ValueError
     except (ValueError, TypeError):
         errors.append("application_deadline must be a valid date (YYYY-MM-DD)")
 
@@ -89,7 +98,8 @@ def find_by_id(cursor, opp_id):
 
 def db_error_response(error):
     """Log the real database error on the server, return a clean message."""
-    print("Database error:", error)
+    # Connector messages may contain usernames, hosts or other private details.
+    print("Database operation failed:", type(error).__name__)
     return jsonify({"error": "A database error occurred. Please try again later."}), 500
 
 
@@ -176,6 +186,8 @@ def update_opportunity(opp_id):
     data = request.get_json(silent=True)
     if not isinstance(data, dict) or len(data) == 0:
         return jsonify({"error": "Request body must be valid JSON with fields to update"}), 400
+    if not any(field in data for field in ALL_FIELDS):
+        return jsonify({"error": "No recognized fields to update"}), 400
 
     conn = None
     try:

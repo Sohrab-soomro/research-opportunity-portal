@@ -107,18 +107,6 @@ class MockConnection:
 
 
 def run_tests():
-    # Attempt real connection first; if MySQL is unavailable, switch to MockConnection
-    using_mock = False
-    try:
-        real_conn = opp_module.get_connection()
-        real_conn.close()
-        print("[INFO] Live MySQL connection detected. Running tests against MySQL database.")
-    except Exception as e:
-        using_mock = True
-        print(f"[INFO] Live MySQL not reachable ({e}). Using isolated test database.")
-        db_store = {"next_id": 1, "rows": {}}
-        opp_module.get_connection = lambda: MockConnection(db_store)
-
     client = portal_app.app.test_client()
     results = []
 
@@ -253,5 +241,15 @@ def run_tests():
 
 
 if __name__ == "__main__":
-    success = run_tests()
-    sys.exit(0 if success else 1)
+    import argparse
+    from test_database import test_database
+    parser = argparse.ArgumentParser(description="Explicit mock or disposable MySQL tests; no fallback")
+    parser.add_argument("--mode", choices=["mock", "mysql"], default="mock")
+    args = parser.parse_args()
+    try:
+        with test_database(args.mode):
+            success = run_tests()
+        sys.exit(0 if success else 1)
+    except Exception as error:
+        print("TEST ENVIRONMENT FAILED:", type(error).__name__, "(details withheld; check MySQL setup)")
+        sys.exit(2)
