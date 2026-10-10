@@ -10,6 +10,11 @@ __pycache__/
 # OS / editor
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
 PUSH_TO_GITHUB.bat
+
+.env.*
+!.env.example
+*.log
+*.zip
+*.mp4
