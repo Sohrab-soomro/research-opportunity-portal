@@ -89,8 +89,7 @@ database/seed.sql         Optional demo rows
 scripts/                  Local MySQL setup/start/stop and full app launcher
 START_PORTAL.cmd          Double-click launcher for this Windows setup
 postman/                  Exported executable collection
-docs/                     Audit, report, quick start, map, demo and submission guide
-DEMO_AND_VIDEO_SCRIPT.docx Preserved original demo reference
+docs/                     Audit, report, quick start, map
 TEST_REPORT.md            Link to current verified report
 ```
 
@@ -158,11 +157,5 @@ Mock mode never contacts MySQL. MySQL mode requires credentials with CREATE DATA
 - Port 5000 occupied: stop the old server or change FLASK_PORT and the Postman baseUrl/browser URL together.
 - Browser cannot connect: start Flask, use its exact URL, and check the terminal.
 - MySQL tests fail to connect: fix local MySQL setup; do not describe mock tests as integration results.
-
-## Git and submission
-
-The original meaningful history is preserved. Origin must remain `https://github.com/Sohrab-soomro/research-opportunity-portal.git`; main tracks origin/main. Use Git Credential Manager or authenticated GitHub tooling. Never embed credentials in URLs. The old archive contained compromised Git configuration; do not redistribute it. Token revocation was confirmed by the owner during this audit.
-
-After local verification, review `git status` and `git diff`, commit logical changes, fetch, reconcile safely, and push normally. Do not force-push.
-
-Follow [the 60-second demo guide](docs/DEMO_VIDEO_SCRIPT.md) and [submission checklist](docs/SUBMISSION.md). The original DOCX is retained as reference; its old testing claims are superseded by the current report. Record a genuine video of at most 60 seconds and include the recording or a genuine accessible video link. Use the supplied registration format: **24P-0604 Sohrab CS-5B.zip**. The assignment's filename example is `P24 0000 NAME CLASS.zip`; the provided student identifier is preserved rather than silently reformatted. Confirm any instructor-specific filename interpretation before submission.
+most 60 seconds and include the recording or a genuine accessible video link. Use the supplied registration format:
+**24P-0604 Sohrab CS-5B.zip**. The assignment's filename example is `P24 0000 NAME CLASS.zip`; the provided student identifier is preserved rather than silently reformatted. Confirm any instructor-specific filename interpretation before submission.
